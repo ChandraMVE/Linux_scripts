@@ -35,6 +35,30 @@ ROOTFS="buildroot/rootfs.tar"
 DTB="imx6dl-kb-nextgen.dtb"
 KERNEL="zImage"
 
+# Check if UBOOT_FILE file is present
+if [ ! -f "${IMAGE_DRIVE_PATH}/${UBOOT_FILE}" ]; then
+    echo -e "${RED}Error: ${UBOOT_FILE} is not present in the specified folder path (${IMAGE_DRIVE_PATH})${NC}"
+    exit 1
+fi
+
+# Check if ROOTFS file is present
+if [ ! -f "${IMAGE_DRIVE_PATH}/${ROOTFS}" ]; then
+    echo -e "${RED}Error: ${ROOTFS} is not present in the specified folder path (${IMAGE_DRIVE_PATH})${NC}"
+    exit 1
+fi
+
+# Check if DTB file is present
+if [ ! -f "${IMAGE_DRIVE_PATH}/${DTB}" ]; then
+    echo -e "${RED}Error: ${DTB} is not present in the specified folder path (${IMAGE_DRIVE_PATH})${NC}"
+    exit 1
+fi
+
+# Check if zImage file is present
+if [ ! -f "${IMAGE_DRIVE_PATH}/${KERNEL}" ]; then
+    echo -e "${RED}Error: ${KERNEL} is not present in the specified folder path (${IMAGE_DRIVE_PATH})${NC}"
+    exit 1
+fi
+
 umount ${SD_DRIVE_PATH}*
 sleep 2
 sync
